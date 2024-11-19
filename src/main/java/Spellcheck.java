@@ -30,6 +30,8 @@ public class Spellcheck {
         // is a common strategy for representing sets using the dictionary ADT.
         BstMap<String, Void> words = new BstMap<>();
         List<String> wordlist = readWords();
+        String[] strings = (String[])wordlist.toArray();
+        int[] indecies = new int[strings.length];
         for (String word: wordlist) {
             words.put(word, null);
         }

@@ -63,16 +63,46 @@ public class BstMap<K extends Comparable<K>, V> {
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
+            this.left = null;
+            this.right = null;
         }
 
         /** Returns the node with the given key, or null if no such node can be found. */
         public Node<K, V> find(K key) {
-            throw new UnsupportedOperationException("not implemented");
+            if (this.key.equals(key)) {
+                return this;
+            } else if (this.key.compareTo(key) > 0) {
+                if (this.left == null) {
+                    return null;
+                } // if
+                return this.left.find(key);
+            } else {
+                if (this.right == null) {
+                    return null;
+                } // if
+                return this.right.find(key);
+            } // if / else if / else
+            // throw new UnsupportedOperationException("not implemented");
         }
 
         /** Inserts the given (key, value) pair into the binary search tree. */
         public void insert(K key, V value) {
-            throw new UnsupportedOperationException("not implemented");
+            if (this.key.equals(key)) { 
+                this.value = value;
+            } else if (this.key.compareTo(key) > 0) {
+                if (this.left == null) {
+                    this.left = new Node<K, V>(key, value);
+                } else {
+                    this.left.insert(key, value);
+                }
+            } else {
+                if (this.right == null) {
+                    this.right = new Node<K, V>(key, value);
+                } else {
+                    this.right.insert(key, value);
+                }
+            } // if / else if / else
+            // throw new UnsupportedOperationException("not implemented");
         }
 
         /**
